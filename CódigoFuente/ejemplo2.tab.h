@@ -1,8 +1,9 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.4.1.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2019 Free Software Foundation,
+   Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -30,6 +31,9 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
+
 #ifndef YY_YY_EJEMPLO2_TAB_H_INCLUDED
 # define YY_YY_EJEMPLO2_TAB_H_INCLUDED
 /* Debug traces.  */
@@ -48,44 +52,51 @@ extern int yydebug;
     ENTERO = 258,
     FLOTANTE = 259,
     CADENA = 260,
-    VARNAME = 261,
-    STRINGVAR = 262,
-    FLOATVAR = 263,
-    INTVAR = 264,
-    ADD = 265,
-    POT = 266,
-    SUB = 267,
-    MUL = 268,
-    DIV = 269,
-    MOD = 270,
-    EQUALS = 271,
-    PARA = 272,
-    COMMA = 273,
-    PARB = 274,
-    QUOTE = 275,
-    INTEGER = 276,
-    FLOATING = 277,
-    STRING = 278,
-    FINST = 279,
-    MODA = 280,
-    MODB = 281
+    BOOLEANO = 261,
+    VARNAME = 262,
+    STRINGVAR = 263,
+    FLOATVAR = 264,
+    INTVAR = 265,
+    ADD = 266,
+    POT = 267,
+    SUB = 268,
+    MUL = 269,
+    DIV = 270,
+    MOD = 271,
+    POW = 272,
+    IF = 273,
+    LT = 274,
+    MT = 275,
+    COMP = 276,
+    EQUALS = 277,
+    PARA = 278,
+    COMMA = 279,
+    PARB = 280,
+    QUOTE = 281,
+    INTEGER = 282,
+    FLOATING = 283,
+    STRING = 284,
+    FINST = 285,
+    MODA = 286,
+    MODB = 287
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
 union YYSTYPE
 {
-#line 14 "ejemplo2.y" /* yacc.c:1909  */
+#line 18 "ejemplo2.y"
 
     int entero;
     float flotante;
     char* cadena;
+    bool booleano;
+    symrec* nodo;
 
-#line 87 "ejemplo2.tab.h" /* yacc.c:1909  */
+#line 98 "ejemplo2.tab.h"
+
 };
-
 typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

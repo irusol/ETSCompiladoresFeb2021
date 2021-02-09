@@ -1,5 +1,5 @@
 ejemplo2: bison flex
-	gcc ejemplo2.tab.c lex.yy.c -o ejemplo2
+	gcc ejemplo2.tab.c lex.yy.c -o ejemplo2 -lm
 flex: ejemplo2.l
 	flex ejemplo2.l
 bison: ejemplo2.y
