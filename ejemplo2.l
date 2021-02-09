@@ -1,10 +1,14 @@
 %{
+    #include "symboltable.h"
     #include "ejemplo2.tab.h"
+    #include <stdio.h>
     #include <string.h>
     char *removeQuotes(char *a);
 %}
 NUM [0-9]+
 ABC [a-zA-Z0-9\ ]+
+VARN [a-zA-Z_]
+VOC [a-zA-Z0-9]*
 %%
 {NUM} {
     printf("Número entero %s\n",yytext);
@@ -16,7 +20,18 @@ ABC [a-zA-Z0-9\ ]+
     yylval.flotante = atof(yytext);
     return (FLOTANTE);
 }
-
+";" {
+    printf("Fin de instruccion\n");
+    return(FINST);
+}
+"^" {
+    printf("Signo de potencia\n");
+    return(POT);
+}
+"=" {
+    printf("Signo de asignacion\n");
+    return(EQUALS);
+}
 "+" {
     printf("Signo Suma\n");
     return (ADD);
@@ -59,6 +74,40 @@ ABC [a-zA-Z0-9\ ]+
     printf("Cadena %s\n", yytext);
     yylval.cadena = removeQuotes(yytext);
     return (CADENA);
+}
+"int" {
+    printf("Declaracion de tipo entero\n");
+    return (INTEGER);
+}
+
+"float" {
+    printf("Declaracion de tipo flotante\n");
+    return (FLOATING);
+}
+
+"string" {
+    printf("Declaracion de tipo cadena\n");
+    return (STRING);
+}
+{VARN}{VOC} {
+    printf("Nombre de Variable %s\n", yytext);
+    yylval.cadena = yytext;
+    symrec* var = getSym(yytext);
+    if(var != NULL){
+        printf("Variable %s ya existe\n",yytext);
+        switch(var->type){
+            case 0:
+                return(STRINGVAR);
+            case 1:
+                return(FLOATVAR);
+            case 2:
+                return(INTVAR);
+            default:
+                printf("\tError en el tipo\n");
+        }
+    }
+    else
+        return (VARNAME);
 }
 %%
 char *removeQuotes(char *a){
